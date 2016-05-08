@@ -1,0 +1,51 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>click demo</title>
+    <style>
+        p {
+            color: red;
+            margin: 5px;
+            cursor: pointer;
+        }
+
+            p:hover {
+                background: yellow;
+            }
+    </style>
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+</head>
+<body>
+
+    <p>First Paragraph</p>
+    <p>Second Paragraph</p>
+    <p>Yet one more Paragraph</p>
+
+    <form id="GetData form">
+        <input id="getData" type="button" value="Get data" />
+        <div id="display">No data to show yet.</div>
+    </form>
+    <script>
+        $("p").click(function () {
+            $(this).slideUp();
+        });
+
+        $("#getData").click(function () {
+            $("#display").html("<h1> Hi, JS sucks donkey balls.</h1>");
+            jQuery.ajax({
+                type: "GET",
+                url: "Data.ashx",
+                data: "MethodName=GetData",
+                success: function (data) {
+                    alert("Fuck JS and the horse it rode on.");
+                    $("#display").html("<h1> Hi, " + data.FirstName + " " +
+                      data.LastName + " your Blog Address is http://" +
+                    data.Blog + "</h1>");
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
